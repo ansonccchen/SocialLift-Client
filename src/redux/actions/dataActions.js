@@ -74,8 +74,6 @@ export const getPost = postId => dispatch => {
     dispatch({ type: LOADING_UI })
     axios.get(`/post/${postId}`, )
         .then(res => {
-            console.log(res)
-            console.log(res.data)
             dispatch({
                 type: SET_POST,
                 payload: res.data

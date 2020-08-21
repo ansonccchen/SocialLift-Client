@@ -18,17 +18,12 @@ import HomeIcon from '@material-ui/icons/Home'
 
 const styles = {
     linkIcon: {
-        position: "relative",
-        right: "75%"
+        marginRight: 3
     },
     brandText: {
         color: "#fff",
         fontSize: "32px",
-        fontWeight: "200"
-    },
-    linkText: {
-        position: "relative",
-        right: "73%",
+        fontWeight: "200",
     },
 
 }
@@ -39,14 +34,12 @@ function Navbar(props) {
         <Fragment>
             <AppBar>
                 <Toolbar className="nav-container">
-                    {/* <Link to="/" className={classes.linkIcon} >
-                        <img src={AppIcon} alt="SocialLift" />
+                    <Link to="/" className={classes.linkIcon}>
+                        <img src={AppIcon} alt="SocialLift" className="icon-align"/>
                     </Link>
-                    <Link to="/" >
-                        <Typography variant="h6" align="left"className={classes.brandText}>SocialLift</Typography>
-                    </Link> */}
+                    <Typography variant="h6" className={classes.brandText} component={Link} to='/'>SocialLift</Typography>
                     {authenticated ? (
-                        <Fragment>
+                        <div className="center-btns">
                             <PostButton displayName={handle} />
                             <Tooltip title="Home">
                                 <Link to="/">
@@ -56,13 +49,13 @@ function Navbar(props) {
                                 </Link>
                             </Tooltip>
                             <Notifications />
-                        </Fragment>
+                        </div>
                     ) : (
-                        <Fragment>
+                        <div className="center-btns">
                             <Button color="inherit" component={Link} to="/login">Login</Button>
                             <Button color="inherit" component={Link} to="/">Home</Button>
                             <Button color="inherit" component={Link} to="/signup">Signup</Button>
-                        </Fragment>
+                        </div>
                     )}
                 </Toolbar>
             </AppBar>

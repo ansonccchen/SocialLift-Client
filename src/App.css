@@ -9,12 +9,16 @@ html, body {
   margin: 80px auto 0 auto;
   max-width: 1200px;
 }
-.nav-container {
+/* .nav-container {
   margin: auto;
-}
+} */
 .nav-container svg{
   color: #fff
 }
+.center-btns {
+  margin-left: auto;
+}
+
 a {
   text-decoration: none;
 }

@@ -94,7 +94,7 @@ function PostInfo(props) {
             <CircularProgress size={110} thickness={2}/>
         </div>
     ) : (
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
             <Grid item sm={5}>
                 <img src={userImage} alt="Profile" className={classes.profileImage} />
             </Grid>
