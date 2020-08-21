@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
@@ -52,14 +52,27 @@ const styles = theme => ({
 
 
 function PostInfo(props) {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
+    const [paths, setPaths] = useState({
+        oldPath: '',
+        newPath: '',
+    })
+    useEffect(() => {
+        if (props.openDialog) handleClickOpen()
+    }, [])
     const handleClickOpen = () => {
-      setOpen(true);
-      props.getPost(props.postId)
+        let oldPath = window.location.pathname
+        const newPath = `/user/${props.userHandle}/post/${props.postId}`
+        if (oldPath === newPath) oldPath = `/user/${props.userHandle}`
+        window.history.pushState(null, null, newPath)
+        setPaths({ oldPath, newPath })
+        setOpen(true)
+        props.getPost(props.postId)
     }
     const handleClose = () => {
-      setOpen(false);
-      props.clearErrors()
+        window.history.pushState(null, null, paths.oldPath)
+        setOpen(false);
+        props.clearErrors()
     }
     const {
         classes,
@@ -81,7 +94,7 @@ function PostInfo(props) {
             <CircularProgress size={110} thickness={2}/>
         </div>
     ) : (
-        <Grid container spacing={2}>
+        <Grid container spacing={16}>
             <Grid item sm={5}>
                 <img src={userImage} alt="Profile" className={classes.profileImage} />
             </Grid>

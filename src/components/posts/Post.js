@@ -63,7 +63,7 @@ function Post(props) {
                 <span>{likes} Likes</span>
                 <CommentButton />
                 <span>{comments} Comments</span>
-                <PostInfo postId={postId} userHandle={userHandle}/>
+                <PostInfo postId={postId} userHandle={userHandle} openDialog={props.openDialog} />
             </CardContent>
         </Card>
     )
@@ -73,7 +73,8 @@ Post.propTypes = {
     user: PropTypes.object.isRequired,
     likePost: PropTypes.func.isRequired,
     unlikePost: PropTypes.func.isRequired,
-    post: PropTypes.object.isRequired
+    post: PropTypes.object.isRequired,
+    openDialog: PropTypes.bool
 }
 
 const mapStateToProps = state => ({

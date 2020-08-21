@@ -81,7 +81,7 @@ function StaticProfile(props) {
                     <img src={imageUrl} alt="profile" className="profile-image" />
                 </div>
                 <div className="profile-details">
-                    <MUILink component={Link} to={`/users/${handle}`}>
+                    <MUILink component={Link} to={`/user/${handle}`}>
                         {handle}
                     </MUILink>
                     <hr/>

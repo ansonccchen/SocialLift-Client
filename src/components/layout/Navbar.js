@@ -2,25 +2,49 @@ import React, { Fragment } from 'react'
 import { Link } from "react-router-dom"
 import PropTypes from 'prop-types'
 import PostButton from '../posts/PostButton'
+import Notifications from "./Notifications"
+import AppIcon from '../../images/navIcon.png' // Icon made by Freepik from www.flaticon.com
+import { connect } from 'react-redux'
+
 // MUI imports
+import withStyles from '@material-ui/styles/withStyles'
 import AppBar from "@material-ui/core/AppBar"
 import Toolbar from "@material-ui/core/Toolbar"
 import Button from "@material-ui/core/Button"
 import IconButton from "@material-ui/core/IconButton"
 import Tooltip from '@material-ui/core/ToolTip'
-// MUI Icon imports
-import NotificationsIcon from '@material-ui/icons/Notifications'
+import Typography from '@material-ui/core/Typography'
 import HomeIcon from '@material-ui/icons/Home'
-// Redux imports
-import { connect } from 'react-redux'
 
+const styles = {
+    linkIcon: {
+        position: "relative",
+        right: "75%"
+    },
+    brandText: {
+        color: "#fff",
+        fontSize: "32px",
+        fontWeight: "200"
+    },
+    linkText: {
+        position: "relative",
+        right: "73%",
+    },
+
+}
 
 function Navbar(props) {
-    const { authenticated, handle } = props
+    const { authenticated, handle, classes } = props
     return (
         <Fragment>
             <AppBar>
                 <Toolbar className="nav-container">
+                    {/* <Link to="/" className={classes.linkIcon} >
+                        <img src={AppIcon} alt="SocialLift" />
+                    </Link>
+                    <Link to="/" >
+                        <Typography variant="h6" align="left"className={classes.brandText}>SocialLift</Typography>
+                    </Link> */}
                     {authenticated ? (
                         <Fragment>
                             <PostButton displayName={handle} />
@@ -31,13 +55,7 @@ function Navbar(props) {
                                     </IconButton>
                                 </Link>
                             </Tooltip>
-                            <Tooltip title="Notifications">
-                                <Link to="/">
-                                    <IconButton>
-                                        <NotificationsIcon />
-                                    </IconButton>
-                                </Link>
-                            </Tooltip>
+                            <Notifications />
                         </Fragment>
                     ) : (
                         <Fragment>
@@ -60,4 +78,4 @@ const mapStateToProps = state => ({
     handle: state.user.credentials.handle
 })
 
-export default connect(mapStateToProps)(Navbar)
+export default connect(mapStateToProps)(withStyles(styles)(Navbar))
