@@ -1,3 +1,6 @@
+A social media app that allows users to see other users' posts. Users are able to post and like & comment on other posts if they make an account. 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
